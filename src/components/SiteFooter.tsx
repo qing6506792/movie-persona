@@ -15,7 +15,7 @@ export default function SiteFooter() {
             <span className="text-sm text-mist">{siteConfig.nameZh}</span>
           </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-mist">
-            面向大学生的电影人格测试与电影推荐项目，以开源方式一步步搭建。
+            面向电影爱好者的电影人格探索与个性化电影推荐开源项目，正在一步步搭建。
           </p>
           <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm">
             {navLinks.map((item) => (
@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <p>
             <span className="text-cream">开发状态</span> · {siteConfig.status}
           </p>
-          <p>测试与推荐功能尚未上线，目前只有首页和两个预告页。</p>
+          <p>正式的测试与推荐功能尚未上线，目前提供首页、两个预告页和一个交互演示。</p>
           <p>
             <span className="text-cream">开源</span> ·{" "}
             {githubUrl ? (
@@ -55,7 +55,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="border-t border-white/5 px-4 py-4 text-center text-xs text-mist/70">
-        © 2026 {siteConfig.name} {siteConfig.nameZh} · 页面暂未使用任何电影海报等第三方影视素材
+        © 2026 {siteConfig.name} {siteConfig.nameZh} · MIT License · 页面暂未使用任何电影海报等第三方影视素材
       </div>
     </footer>
   );
