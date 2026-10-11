@@ -6,7 +6,7 @@ export const siteConfig = {
     "用一分钟发现你的电影人格，找到与你灵魂同频的电影。面向大学生的开源电影人格测试与推荐项目。",
   // GitHub 仓库地址。尚未创建仓库时保持空字符串 ""，网站会显示“待配置”，不会生成任何跳转。
   // 有了真实地址后，只需要改这一处，例如："https://github.com/your-name/movie-persona"
-  githubUrl: "",
+    githubUrl: "https://github.com/qing6506792/movie-persona",
   status: "V0.0.1 · 早期开发中",
 };
 
