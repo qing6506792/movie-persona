@@ -1,83 +1,84 @@
-import type { Quiz } from "@/types/quiz";
+import type { ScoredQuiz } from "@/types/quiz";
 
-// 电影人格测试的题目草稿（7 题，静态数据）。
-// 说明：
-// - 目前没有计分规则，选项不对应任何人格结果。
-// - 暂未接入任何页面，/quizzes 仍使用两道题的 demoQuiz。
-// - 题目与选项均为项目原创。
-// - 题目 id 与选项 id 一经使用请保持稳定，后续加计分时按 id 关联。
-export const personaQuizDraft: Quiz = {
-  id: "persona-draft-v1",
-  title: "电影人格测试（题库草稿）",
+// 《你的人生拿了哪种电影剧本？》7 道题，题目与选项均为项目原创。
+// persona 字段是计分归属：选中即给对应人格 +1 分，页面不展示。
+// 题目 id 与选项 id 请保持稳定。
+// 每题四个选项的人格顺序刻意错开：
+//   Q1 A B C D | Q2 C A D B | Q3 B D A C | Q4 D C B A
+//   Q5 A D C B | Q6 C B D A | Q7 B A D C
+// （A=wanderer, B=prophet, C=savior, D=rewriter）
+export const personaQuiz: ScoredQuiz = {
+  id: "persona-quiz-v1",
+  title: "你的人生拿了哪种电影剧本？",
   questions: [
     {
       id: "pq1",
-      text: "打开片库，你通常怎么决定看哪一部？",
+      text: "深夜醒来，你发现自己站在一个陌生的电影场景里。第一反应是？",
       options: [
-        { id: "a", text: "先看预告片和大家的口碑" },
-        { id: "b", text: "听朋友推荐" },
-        { id: "c", text: "凭当下的心情随手点开" },
-        { id: "d", text: "把喜欢的老片再看一遍" },
+        { id: "a", persona: "wanderer", text: "先把这里的光线和雾气看个够，这镜头太好看了" },
+        { id: "b", persona: "prophet", text: "先找穿帮的地方，肯定有人在布景" },
+        { id: "c", persona: "savior", text: "大喊一声“有人吗”，顺便看看能不能和群演聊两句" },
+        { id: "d", persona: "rewriter", text: "直接往画面外走，我不按分镜行动" },
       ],
     },
     {
       id: "pq2",
-      text: "一部电影最先打动你的往往是？",
+      text: "路上的一只猫突然开口说话了，你会？",
       options: [
-        { id: "a", text: "一个让你记很久的人物" },
-        { id: "b", text: "画面和光影的质感" },
-        { id: "c", text: "配乐响起的那一刻" },
-        { id: "d", text: "出人意料的剧情反转" },
+        { id: "a", persona: "savior", text: "蹲下来问它有什么愿望，顺手给它加个彩蛋" },
+        { id: "b", persona: "wanderer", text: "点点头，觉得世界本来就该有一点这样的梦幻" },
+        { id: "c", persona: "rewriter", text: "“既然你都会说话了，这一集的剧本要不要一起写？”" },
+        { id: "d", persona: "prophet", text: "先怀疑附近是不是有人藏了喇叭" },
       ],
     },
     {
       id: "pq3",
-      text: "开场十分钟还没抓住你，你会？",
+      text: "下雨天被困在屋檐下，此刻的电影 BGM 是？",
       options: [
-        { id: "a", text: "再给它一点耐心，慢热的片子常有惊喜" },
-        { id: "b", text: "边看边刷手机，看看后面怎样" },
-        { id: "c", text: "直接换一部" },
-        { id: "d", text: "先去搜搜别人怎么评价" },
+        { id: "a", persona: "prophet", text: "一段越听越不对劲的悬疑弦乐" },
+        { id: "b", persona: "rewriter", text: "一首突然切歌的电子乐，主打不按套路" },
+        { id: "c", persona: "wanderer", text: "慢慢飘起来的钢琴，混着一点雨声" },
+        { id: "d", persona: "savior", text: "一首热热闹闹的歌，我要在雨里加戏" },
       ],
     },
     {
       id: "pq4",
-      text: "你更喜欢哪种结局？",
+      text: "电梯里遇见一个半熟不熟的朋友，你会说？",
       options: [
-        { id: "a", text: "圆满收束，让人心里踏实" },
-        { id: "b", text: "留白开放，自己去想" },
-        { id: "c", text: "带点遗憾，回味更久" },
-        { id: "d", text: "最后来一记反转" },
+        { id: "a", persona: "rewriter", text: "“这次我们不聊天气，聊点离谱的。”" },
+        { id: "b", persona: "savior", text: "“我最近发现了一件特别离谱的事，你要听吗？”" },
+        { id: "c", persona: "prophet", text: "“你有没有觉得，这层楼停得有点久？”" },
+        { id: "d", persona: "wanderer", text: "微笑点头，心里已经在给这段沉默配乐" },
       ],
     },
     {
       id: "pq5",
-      text: "更适合你的电影节奏是？",
+      text: "你突然发现，自己的人生其实是一档长期拍摄的节目。你会？",
       options: [
-        { id: "a", text: "紧凑利落，一路不停" },
-        { id: "b", text: "舒缓从容，像在散步" },
-        { id: "c", text: "起伏明显，有张有弛" },
-        { id: "d", text: "看内容，节奏不重要" },
+        { id: "a", persona: "wanderer", text: "希望镜头多拍点我发呆的空镜" },
+        { id: "b", persona: "rewriter", text: "去找导演，申请自己改剧本" },
+        { id: "c", persona: "savior", text: "对着镜头比个耶，今天的彩蛋我来加" },
+        { id: "d", persona: "prophet", text: "回看之前的细节，推理下一集会发生什么" },
       ],
     },
     {
       id: "pq6",
-      text: "面对没接触过的电影类型，你的态度是？",
+      text: "给你的故事安排一件神秘道具，你会选？",
       options: [
-        { id: "a", text: "很好奇，愿意主动试试" },
-        { id: "b", text: "有人带着看就愿意" },
-        { id: "c", text: "更想把熟悉的类型看透" },
-        { id: "d", text: "看情况，取决于当天心情" },
+        { id: "a", persona: "savior", text: "一个永远开不完的惊喜盲盒" },
+        { id: "b", persona: "prophet", text: "一把刻着看不懂符号的钥匙" },
+        { id: "c", persona: "rewriter", text: "一支能改写台词的钢笔" },
+        { id: "d", persona: "wanderer", text: "一盏只在夜里亮起的旧台灯" },
       ],
     },
     {
       id: "pq7",
-      text: "一部电影看完，你更希望它带给你什么？",
+      text: "电影结束前，你最希望银幕上留下哪个画面？",
       options: [
-        { id: "a", text: "痛快，放松一下" },
-        { id: "b", text: "思考，值得慢慢琢磨" },
-        { id: "c", text: "共鸣，像被人懂了" },
-        { id: "d", text: "新奇，打开一扇没见过的窗" },
+        { id: "a", persona: "prophet", text: "一个小细节，回头看才发现早有伏笔" },
+        { id: "b", persona: "wanderer", text: "日落时分，镜头慢慢拉远，什么都不用说" },
+        { id: "c", persona: "rewriter", text: "主角走出片场大门，把剧本留在身后" },
+        { id: "d", persona: "savior", text: "所有人在片尾彩蛋里热热闹闹地合影" },
       ],
     },
   ],

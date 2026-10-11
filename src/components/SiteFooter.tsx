@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <p>
             <span className="text-cream">开发状态</span> · {siteConfig.status}
           </p>
-          <p>正式的测试与推荐功能尚未上线，目前提供答题交互演示和电影偏好选择演示。</p>
+          <p>电影人格测试已可体验，个性化电影推荐仍在开发中。</p>
           <p>
             <span className="text-cream">开源</span> ·{" "}
             {githubUrl ? (
