@@ -6,7 +6,7 @@ export const siteConfig = {
     "用一分钟发现你的电影人格，找到与你灵魂同频的电影。面向电影爱好者的电影人格探索与个性化电影推荐开源项目。",
   // GitHub 仓库地址。保持空字符串 "" 时，网站会显示“待配置”，不会生成任何跳转。
   githubUrl: "https://github.com/qing6506792/movie-persona",
-  status: "V0.0.2 · 早期开发中",
+  status: "V0.0.3 · 早期开发中",
 };
 
 export const navLinks = [

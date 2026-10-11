@@ -15,6 +15,8 @@ type PosterCardProps = {
   tagline: string;
   theme: PosterTheme;
   className?: string;
+  // 左上角小标签，默认“设计演示”。
+  badge?: string;
 };
 
 function Motif({ motif, accent }: { motif: PosterMotif; accent: string }) {
@@ -88,6 +90,7 @@ export default function PosterCard({
   tagline,
   theme,
   className = "",
+  badge = "设计演示",
 }: PosterCardProps) {
   return (
     <figure
@@ -99,7 +102,7 @@ export default function PosterCard({
       <Motif motif={theme.motif} accent={theme.accent} />
 
       <span className="absolute left-3 top-3 rounded-full bg-black/40 px-2 py-0.5 text-[0.7rem] tracking-wider text-cream/80">
-        设计演示
+        {badge}
       </span>
 
       <figcaption

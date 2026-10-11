@@ -35,7 +35,7 @@ export default function SiteFooter() {
           <p>
             <span className="text-cream">开发状态</span> · {siteConfig.status}
           </p>
-          <p>正式的测试与推荐功能尚未上线，目前提供首页、两个预告页和一个交互演示。</p>
+          <p>正式的测试与推荐功能尚未上线，目前提供答题交互演示和电影偏好选择演示。</p>
           <p>
             <span className="text-cream">开源</span> ·{" "}
             {githubUrl ? (
