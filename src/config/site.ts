@@ -9,8 +9,11 @@ export const siteConfig = {
   status: "V0.0.3 · 早期开发中",
 };
 
-export const navLinks = [
-  { href: "/quizzes", label: "电影人格测试" },
+export type NavLink = { href: string; label: string; short?: string };
+
+export const navLinks: NavLink[] = [
+  { href: "/", label: "首页" },
+  { href: "/quizzes", label: "电影人格测试", short: "人格测试" },
   { href: "/discover", label: "电影推荐" },
 ];
 

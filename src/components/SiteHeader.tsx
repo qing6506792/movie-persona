@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Clapperboard, Star } from "lucide-react";
-import { getGithubUrl, navLinks, siteConfig } from "@/config/site";
+import NavLinks from "@/components/NavLinks";
+import { getGithubUrl, siteConfig } from "@/config/site";
 
 const navItemClass =
   "inline-flex min-h-11 items-center rounded-full px-2.5 text-sm text-mist transition-colors hover:bg-white/5 hover:text-cream sm:px-3";
@@ -24,11 +25,7 @@ export default function SiteHeader() {
           aria-label="主导航"
           className="-mx-2.5 flex flex-wrap items-center sm:mx-0"
         >
-          {navLinks.map((item) => (
-            <Link key={item.href} href={item.href} className={navItemClass}>
-              {item.label}
-            </Link>
-          ))}
+          <NavLinks />
 
           {githubUrl ? (
             <a

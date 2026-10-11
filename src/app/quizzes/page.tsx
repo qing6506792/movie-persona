@@ -6,7 +6,7 @@ import QuizDemo from "@/components/quiz/QuizDemo";
 export const metadata: Metadata = {
   title: "电影人格测试（交互演示）",
   description:
-    "两道示例题的答题交互演示，没有计分，不生成结果。正式的电影人格测试仍在开发中。",
+    "电影人格测试交互演示：两道示例题，不生成人格结果，答案不会用于电影推荐。",
 };
 
 const glowStyle = {
@@ -36,7 +36,10 @@ export default function QuizzesPage() {
           先来试试答题的手感
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-mist sm:text-lg">
-          这是一个只有两道示例题的交互演示，用来验证答题体验。它没有计分，不会生成电影人格结果，也不会保存或上传你的任何选择。正式的电影人格测试正在开发中。
+          当前为电影人格测试交互演示，暂不生成正式人格结果。测试答案不会用于电影推荐，也不会跨页面保存。
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist/80">
+          这里只有两道示例题，用来验证答题体验。正式的电影人格测试正在开发中。
         </p>
 
         <div className="mt-10">
@@ -55,7 +58,7 @@ export default function QuizzesPage() {
             href="/discover"
             className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/20 px-6 text-base font-medium text-cream transition hover:border-accent/60 hover:bg-white/5 active:scale-[0.98] sm:w-auto"
           >
-            看看电影推荐预告
+            去试试电影偏好选择
           </Link>
         </div>
       </div>

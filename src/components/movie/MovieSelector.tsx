@@ -56,7 +56,7 @@ function SelectableMovie({
   onToggle: (id: string) => void;
 }) {
   return (
-    <li>
+    <li className="scroll-mb-24">
       <div className="relative rounded-2xl">
         <PosterCard
           movie={{ title: movie.title, year: movie.year }}
@@ -271,7 +271,7 @@ export default function MovieSelector() {
         从 {catalogMovies.length} 部电影里，挑至少 {MIN_SEEDS} 部
       </h2>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-mist">
-        点击封面选择，再点一次取消。你的选择只保存在当前页面的内存里，刷新页面会重置，不会被保存或上传。封面均为原创的占位设计，并非官方海报。
+                点击封面选择，再点一次取消。封面均为原创的占位设计，并非官方海报。
       </p>
 
       <div className="mt-8 space-y-4">
@@ -356,40 +356,48 @@ export default function MovieSelector() {
           </button>
         </div>
       )}
-
-      <div className="sticky bottom-0 z-40 -mx-4 mt-10 border-t border-white/10 bg-ink/90 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div aria-live="polite" className="text-sm">
+      
+      <div className="sticky bottom-0 z-40 -mx-4 mt-10 border-t border-white/10 bg-ink/90 px-4 py-2.5 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 [@media(max-height:480px)]:static">
+        <div className="flex items-center justify-between gap-3">
+          <div aria-live="polite" className="min-w-0 flex-1 text-sm">
             <p className="text-cream">
               已选择 <span className="font-semibold text-accent">{count}</span>{" "}
               部
             </p>
             <p className="text-xs text-mist">
-              {canContinue
-                ? "已达到最少数量，可以继续，也可以再多选几部。"
-                : `至少选 ${MIN_SEEDS} 部才能继续，还差 ${MIN_SEEDS - count} 部。`}
+              <span className="sm:hidden">
+                {canContinue ? "可以继续了" : `还差 ${MIN_SEEDS - count} 部`}
+              </span>
+              <span className="hidden sm:inline">
+                {canContinue
+                  ? "已达到最少数量，可以继续，也可以再多选几部。"
+                  : `至少选 ${MIN_SEEDS} 部才能继续，还差 ${MIN_SEEDS - count} 部。`}
+              </span>
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            {count > 0 ? (
-              <button
-                type="button"
-                onClick={clearSelection}
-                className="min-h-12 rounded-full px-4 text-sm text-mist transition-colors hover:text-cream"
-              >
-                清空选择
-              </button>
-            ) : null}
+
+          {count > 0 ? (
             <button
               type="button"
-              disabled={!canContinue}
-              onClick={() => goTo("confirm")}
-              className={`${primaryButton} flex-1 sm:flex-none`}
+              onClick={clearSelection}
+              aria-label="清空选择"
+              className="min-h-12 shrink-0 rounded-full px-2 text-sm text-mist transition-colors hover:text-cream sm:px-4"
             >
-              查看并确认
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <span className="sm:hidden">清空</span>
+              <span className="hidden sm:inline">清空选择</span>
             </button>
-          </div>
+          ) : null}
+
+          <button
+            type="button"
+            disabled={!canContinue}
+            onClick={() => goTo("confirm")}
+            className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-accent px-4 text-base font-semibold text-ink transition hover:bg-accent/90 hover:shadow-[0_0_32px_rgba(168,139,250,0.45)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:shadow-none disabled:active:scale-100 sm:px-6"
+          >
+            <span className="sm:hidden">去确认</span>
+            <span className="hidden sm:inline">查看并确认</span>
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </button>
         </div>
       </div>
     </section>

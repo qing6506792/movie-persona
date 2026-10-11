@@ -3,9 +3,9 @@ import { Compass } from "lucide-react";
 import MovieSelector from "@/components/movie/MovieSelector";
 
 export const metadata: Metadata = {
-  title: "选择你喜欢的电影（推荐即将开拍）",
+  title: "电影偏好选择（原型）",
   description:
-    "挑选你喜欢的电影，体验偏好选择流程。个性化推荐功能仍在开发中。",
+    "电影偏好选择原型：挑选你喜欢的电影，不会上传，也不会生成实际推荐。",
 };
 
 const glowStyle = {
@@ -24,14 +24,17 @@ export default function DiscoverPage() {
             <Compass aria-hidden="true" className="size-5" />
           </span>
           <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs text-accent">
-            开发中 · 推荐尚未上线
+            原型 · 推荐尚未上线
           </span>
         </div>
         <h1 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-cream sm:text-5xl">
           告诉我们，你喜欢哪些电影
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-mist sm:text-lg">
-          个性化电影推荐还在开发中，目前不会给出任何推荐结果。你可以先体验“挑选偏好”这一步，它是未来推荐的起点。
+          当前为电影偏好选择原型。所选电影仅保留在当前页面状态中，不会上传或生成实际推荐；离开或刷新后选择可能丢失。
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-mist/80">
+          它与电影人格测试相互独立，测试里的答案不会带到这里。
         </p>
       </header>
 
