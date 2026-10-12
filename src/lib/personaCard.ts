@@ -1,5 +1,5 @@
 import type { Persona } from "@/data/personas";
-import type { PersonaId } from "@/types/quiz";
+import type { InstinctId } from "@/types/quiz";
 
 type Ctx = CanvasRenderingContext2D;
 type Box = { x: number; y: number; w: number; h: number };
@@ -96,7 +96,7 @@ function drawPerforations(ctx: Ctx, y: number) {
   }
 }
 
-// ---------- 四种人格的纹样（仅在导出图使用，均为原创几何图形） ----------
+// ---------- 四套纹样（按电影本能选用，仅在导出图使用，均为原创几何图形） ----------
 
 function decorWanderer(ctx: Ctx, accent: string, b: Box) {
   const cx = b.x + b.w * 0.68;
@@ -263,11 +263,12 @@ function decorRewriter(ctx: Ctx, accent: string, b: Box) {
   ctx.fillRect(b.x + b.w * 0.58 + 10, b.y + b.h * 0.4 + 24, 34, 6);
 }
 
-const DECORS: Record<PersonaId, (ctx: Ctx, accent: string, box: Box) => void> = {
-  wanderer: decorWanderer,
-  prophet: decorProphet,
-  savior: decorSavior,
-  rewriter: decorRewriter,
+// 纹样按本能选择（4 种），配色按人格（12 套）选择。12 套独立纹样留给后续任务。
+const DECORS: Record<InstinctId, (ctx: Ctx, accent: string, box: Box) => void> = {
+  sensory: decorWanderer,
+  insight: decorProphet,
+  improv: decorSavior,
+  breakthrough: decorRewriter,
 };
 
 function drawFrame(ctx: Ctx, persona: Persona, b: Box) {
@@ -278,7 +279,7 @@ function drawFrame(ctx: Ctx, persona: Persona, b: Box) {
   ctx.fillStyle = rgba(INK, 0.35);
   ctx.fill();
   ctx.clip();
-  DECORS[persona.id](ctx, accent, b);
+  DECORS[persona.instinct](ctx, accent, b);
   ctx.restore();
 
   roundedRectPath(ctx, b.x, b.y, b.w, b.h, 14);

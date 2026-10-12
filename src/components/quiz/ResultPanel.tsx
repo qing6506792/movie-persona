@@ -6,44 +6,60 @@ import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
   Check,
+  Clapperboard,
+  Cloud,
+  CloudRain,
   Copy,
+  DoorOpen,
   Eye,
-  Moon,
+  Film,
+  Layers,
   PartyPopper,
   Pencil,
   RotateCcw,
+  Search,
+  Sparkles,
   Undo2,
+  Zap,
 } from "lucide-react";
 import { buildShareText } from "@/data/personas";
 import type { Persona } from "@/data/personas";
 import { getSiteUrl } from "@/config/site";
-import type { PersonaId } from "@/types/quiz";
+import type { InstinctId, PersonaId } from "@/types/quiz";
 import SavePersonaCard from "./SavePersonaCard";
 
-
+// Record<PersonaId, …> 保证 12 种人格都有图标，少一个 tsc 会报错。
 const icons: Record<PersonaId, LucideIcon> = {
-  wanderer: Moon,
-  prophet: Eye,
-  savior: PartyPopper,
-  rewriter: Pencil,
+  "sensory-atmospheric": CloudRain,
+  "sensory-high-energy": Sparkles,
+  "sensory-surreal": Cloud,
+  "insight-atmospheric": Eye,
+  "insight-high-energy": Search,
+  "insight-surreal": Layers,
+  "improv-atmospheric": Film,
+  "improv-high-energy": Zap,
+  "improv-surreal": PartyPopper,
+  "breakthrough-atmospheric": Pencil,
+  "breakthrough-high-energy": DoorOpen,
+  "breakthrough-surreal": Clapperboard,
 };
 
-// 每种人格一套纯 SVG 装饰图案，不使用任何外部图片。
-function Decor({ id, accent }: { id: PersonaId; accent: string }) {
+// 每种本能一套纯 SVG 装饰图案（颜色随人格主题变化），不使用任何外部图片。
+function Decor({ instinct, accent }: { instinct: InstinctId; accent: string }) {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 200 200"
       className="pointer-events-none absolute -right-10 -top-10 -z-10 size-64 opacity-30 sm:size-80"
     >
-      {id === "wanderer" && (
+      {instinct === "sensory" && (
         <>
           <circle cx="100" cy="100" r="30" fill={accent} />
           <circle cx="100" cy="100" r="55" fill="none" stroke={accent} strokeOpacity="0.6" />
           <circle cx="100" cy="100" r="80" fill="none" stroke={accent} strokeOpacity="0.35" />
         </>
       )}
-      {id === "prophet" &&
+      {instinct === "insight" &&
         [40, 80, 120, 160].map((v) => (
           <path
             key={v}
@@ -53,7 +69,7 @@ function Decor({ id, accent }: { id: PersonaId; accent: string }) {
             strokeWidth="1.5"
           />
         ))}
-      {id === "savior" &&
+      {instinct === "improv" &&
         [
           [40, 50, 8],
           [150, 40, 12],
@@ -64,7 +80,7 @@ function Decor({ id, accent }: { id: PersonaId; accent: string }) {
         ].map(([cx, cy, r]) => (
           <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r={r} fill={accent} />
         ))}
-      {id === "rewriter" && (
+      {instinct === "breakthrough" && (
         <>
           {[0, 1, 2, 3, 4].map((i) => (
             <path
@@ -131,10 +147,10 @@ export default function ResultPanel({ persona, onRestart, onEdit }: ResultPanelP
           backgroundImage: `linear-gradient(160deg, ${t.from}, ${t.via} 55%, ${t.to})`,
         }}
       >
-        <Decor id={persona.id} accent={t.accent} />
+        <Decor instinct={persona.instinct} accent={t.accent} />
 
         <p className="text-xs tracking-[0.3em]" style={{ color: t.accent }}>
-          你的片场人设 · TYPE {persona.code}
+          你的片场人设 · FILE {persona.code}
         </p>
 
         <span
@@ -148,7 +164,7 @@ export default function ResultPanel({ persona, onRestart, onEdit }: ResultPanelP
           id="result-title"
           ref={headingRef}
           tabIndex={-1}
-          className="mt-4 font-display text-4xl font-bold leading-tight text-cream outline-none sm:text-5xl"
+          className="mt-4 break-words font-display text-4xl font-bold leading-tight text-cream outline-none sm:text-5xl"
         >
           {persona.title}
         </h2>
@@ -172,6 +188,16 @@ export default function ResultPanel({ persona, onRestart, onEdit }: ResultPanelP
             </li>
           ))}
         </ul>
+
+        <p className="mt-6 flex items-start gap-2 text-sm leading-relaxed text-cream/70">
+          <span
+            className="mt-0.5 shrink-0 rounded border px-1.5 py-0.5 text-xs"
+            style={{ borderColor: t.accent, color: t.accent }}
+          >
+            B 面
+          </span>
+          <span>{persona.flaw}</span>
+        </p>
       </article>
 
       <p className="mt-3 text-center text-xs text-mist/80">
@@ -211,8 +237,9 @@ export default function ResultPanel({ persona, onRestart, onEdit }: ResultPanelP
           </p>
         </div>
       </div>
-      
+
       <SavePersonaCard persona={persona} />
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="button"

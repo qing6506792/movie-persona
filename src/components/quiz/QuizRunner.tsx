@@ -59,11 +59,11 @@ export default function QuizRunner() {
   }
 
   if (finished) {
-    const { winner } = scoreAnswers(personaQuiz, answers);
-    if (winner) {
+    const result = scoreAnswers(personaQuiz, answers);
+    if (result.ok) {
       return (
         <ResultPanel
-          persona={personas[winner]}
+          persona={personas[result.personaId]}
           onRestart={restart}
           onEdit={editAnswers}
         />
