@@ -18,6 +18,8 @@ import { buildShareText } from "@/data/personas";
 import type { Persona } from "@/data/personas";
 import { getSiteUrl } from "@/config/site";
 import type { PersonaId } from "@/types/quiz";
+import SavePersonaCard from "./SavePersonaCard";
+
 
 const icons: Record<PersonaId, LucideIcon> = {
   wanderer: Moon,
@@ -209,7 +211,8 @@ export default function ResultPanel({ persona, onRestart, onEdit }: ResultPanelP
           </p>
         </div>
       </div>
-
+      
+      <SavePersonaCard persona={persona} />
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
         <button
           type="button"

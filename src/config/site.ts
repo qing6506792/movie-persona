@@ -9,7 +9,7 @@ export const siteConfig = {
   // 网站的公开访问地址（部署后再填，例如 "https://example.com"）。
   // 保持空字符串时，分享文案不会附带任何链接。
   siteUrl: "",
-  status: "V0.0.5 · 早期开发中",
+  status: "V0.0.6 · 早期开发中",
 };
 
 export type NavLink = { href: string; label: string; short?: string };
